@@ -1,0 +1,10 @@
+{
+  "name": "sandeep-portfolio-root",
+  "private": true,
+  "scripts": {
+    "start": "npm --prefix sandeep-portfolio start",
+    "dev": "npm --prefix sandeep-portfolio run dev",
+    "build": "npm --prefix sandeep-portfolio run build",
+    "test": "npm --prefix sandeep-portfolio run test"
+  }
+}
