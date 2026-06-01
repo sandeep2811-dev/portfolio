@@ -1,0 +1,5 @@
+{
+  "installCommand": "echo Skipping install for static build output",
+  "buildCommand": "echo Using existing build output",
+  "outputDirectory": "sandeep-portfolio/build"
+}
