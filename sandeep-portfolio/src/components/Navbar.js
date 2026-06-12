@@ -6,6 +6,7 @@ const navLinks = [
   { label: 'Skills', href: '#skills' },
   { label: 'Projects', href: '#projects' },
   { label: 'Experience', href: '#experience' },
+  { label: 'Certifications', href: '#certifications' },
   { label: 'Contact', href: '#contact' },
 ];
 
@@ -28,7 +29,7 @@ export default function Navbar() {
           if (e.isIntersecting) setActiveSection(e.target.id);
         });
       },
-      { threshold: 0.4 }
+      { threshold: 0.3 }
     );
     sections.forEach((s) => obs.observe(s));
     return () => obs.disconnect();
@@ -37,10 +38,10 @@ export default function Navbar() {
   return (
     <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
       <div className="nav-inner container">
-        <a href="#hero" className="nav-logo">
+        <a href="#hero" className="nav-logo" data-hover>
           <span className="logo-bracket">&lt;</span>
-          SP
-          <span className="logo-bracket">/&gt;</span>
+          Sandeep
+          <span className="logo-bracket"> /&gt;</span>
         </a>
 
         <ul className={`nav-links ${menuOpen ? 'open' : ''}`}>
@@ -50,6 +51,7 @@ export default function Navbar() {
                 href={link.href}
                 className={activeSection === link.href.slice(1) ? 'active' : ''}
                 onClick={() => setMenuOpen(false)}
+                data-hover
               >
                 {link.label}
               </a>
@@ -57,8 +59,10 @@ export default function Navbar() {
           ))}
           <li>
             <a
-              href="mailto:pullareddysandeep@gmail.com"
+              href="#contact"
               className="nav-cta"
+              onClick={() => setMenuOpen(false)}
+              data-hover
             >
               Hire Me
             </a>

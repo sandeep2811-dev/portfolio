@@ -5,6 +5,7 @@ import About from './components/About';
 import Skills from './components/Skills';
 import Projects from './components/Projects';
 import Experience from './components/Experience';
+import Certifications from './components/Certifications';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 
@@ -44,14 +45,14 @@ function App() {
         cursor.style.height = '20px';
         follower.style.width = '60px';
         follower.style.height = '60px';
-        follower.style.borderColor = 'rgba(110,231,183,0.8)';
+        follower.style.borderColor = 'rgba(220,38,38,0.8)';
       });
       el.addEventListener('mouseleave', () => {
         cursor.style.width = '12px';
         cursor.style.height = '12px';
         follower.style.width = '36px';
         follower.style.height = '36px';
-        follower.style.borderColor = 'rgba(110,231,183,0.4)';
+        follower.style.borderColor = 'rgba(220,38,38,0.4)';
       });
     });
 
@@ -86,6 +87,7 @@ function App() {
         <Skills />
         <Projects />
         <Experience />
+        <Certifications />
         <Contact />
       </main>
       <Footer />

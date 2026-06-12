@@ -1,82 +1,117 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import './Skills.css';
 
 const skillGroups = [
   {
-    category: 'Frontend',
-    icon: '🎨',
-    color: '#38BDF8',
-    skills: ['React.js', 'HTML5', 'CSS3', 'Responsive Design', 'TypeScript'],
+    category: 'Programming Languages',
+    icon: '💻',
+    color: '#dc2626',
+    skills: ['Python', 'C++', 'JavaScript', 'SQL', 'TypeScript', 'HTML5', 'CSS3']
   },
   {
-    category: 'Backend',
-    icon: '⚙️',
-    color: '#6EE7B7',
-    skills: ['Node.js', 'Express.js', 'NestJS', 'REST APIs', 'Python', 'FastAPI'],
-  },
-  {
-    category: 'Databases',
-    icon: '🗄️',
-    color: '#818CF8',
-    skills: ['PostgreSQL', 'Query Optimization', 'Indexing', 'Data Modeling', 'Redis'],
-  },
-  {
-    category: 'Tools & DevOps',
-    icon: '🔧',
-    color: '#F59E0B',
-    skills: ['Git & GitHub', 'Docker', 'Linux', 'Postman', 'Agile / Scrum'],
-  },
-  {
-    category: 'Core CS',
+    category: 'Machine Learning & AI',
     icon: '🧠',
-    color: '#F472B6',
-    skills: ['Data Structures', 'Algorithms', 'OOP', 'System Design', 'Clean Code'],
+    color: '#ef4444',
+    skills: ['Machine Learning', 'Deep Learning', 'Computer Vision']
   },
   {
-    category: 'Learning Now',
-    icon: '🚀',
-    color: '#34D399',
-    skills: ['React Native', 'Cloud Deployment', 'Microservices', 'System Design Advanced'],
+    category: 'Frameworks & Libraries',
+    icon: '⚙️',
+    color: '#f43f5e',
+    skills: ['PyTorch', 'TensorFlow', 'Scikit-learn', 'OpenCV', 'Pandas', 'NumPy', 'React.js', 'Node.js', 'Express.js', 'NestJS', 'FastAPI']
   },
+  {
+    category: 'Core Computer Science',
+    icon: '📔',
+    color: '#fda4af',
+    skills: ['Data Structures & Algorithms', 'DBMS', 'OOP','Operating Systems', 'Computer Networks', 'Algorithm Optimization', 'Clean Code']
+  },
+  {
+    category: 'Tools, DevOps & Mobile',
+    icon: '🔧',
+    color: '#dc2626',
+    skills: ['Git & GitHub', 'Linux', 'Docker', 'Postman', 'MacOS']
+  }
 ];
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: 'spring',
+      stiffness: 80,
+      damping: 15
+    }
+  }
+};
 
 export default function Skills() {
   return (
     <section className="skills section" id="skills">
       <div className="container">
         <div className="section-header reveal">
-          <p className="section-label">What I Work With</p>
+          <p className="section-label">Capabilities</p>
           <h2 className="section-title">
             Technical <span className="gradient-text">Skills</span>
           </h2>
           <p className="section-sub">
-            A curated stack built through real projects, internships, and continuous learning.
+            A diverse, modern skill set spanning web application engineering, machine learning workflows, and core computer science fundamentals.
           </p>
         </div>
 
-        <div className="skills-grid">
+        <motion.div 
+          className="skills-grid"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+        >
           {skillGroups.map((group, i) => (
-            <div
-              className="skill-card reveal"
+            <motion.div
+              className="skill-card glass-panel"
               key={group.category}
-              style={{ transitionDelay: `${i * 0.08}s` }}
+              variants={cardVariants}
+              whileHover={{ 
+                y: -6, 
+                boxShadow: '0 15px 35px rgba(220, 38, 38, 0.08), 0 4px 12px rgba(0, 0, 0, 0.02)',
+                borderColor: 'rgba(220, 38, 38, 0.2)' 
+              }}
             >
               <div className="skill-card-header">
-                <span className="skill-icon">{group.icon}</span>
-                <h3 className="skill-category" style={{ color: group.color }}>
-                  {group.category}
-                </h3>
+                <span className="skill-icon" style={{ backgroundColor: `${group.color}15` }}>
+                  {group.icon}
+                </span>
+                <h3 className="skill-category">{group.category}</h3>
               </div>
+              
               <div className="skill-tags">
                 {group.skills.map((skill) => (
-                  <span className="skill-tag" key={skill} data-hover>
+                  <motion.span 
+                    className="skill-tag" 
+                    key={skill}
+                    whileHover={{ scale: 1.05, backgroundColor: 'rgba(220, 38, 38, 0.08)', color: '#dc2626' }}
+                    data-hover
+                  >
                     {skill}
-                  </span>
+                  </motion.span>
                 ))}
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

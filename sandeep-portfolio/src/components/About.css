@@ -1,122 +1,163 @@
+/* =====================================================
+   ABOUT SECTION - WHITE & RED THEME
+   ===================================================== */
+
 .about {
-  padding: 7rem 0;
-  position: relative;
+  background: var(--bg-2);
+  border-top: 1px solid rgba(220, 38, 38, 0.05);
+  border-bottom: 1px solid rgba(220, 38, 38, 0.05);
 }
 
 .about-inner {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 5rem;
-  align-items: start;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.about-left {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
 .about-heading {
   font-family: var(--font-display);
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
   font-weight: 800;
-  line-height: 1.15;
-  margin-bottom: 1.5rem;
-  letter-spacing: -0.02em;
+  line-height: 1.25;
+  color: var(--text-primary);
 }
 
 .about-card {
+  padding: 2.2rem;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.2rem;
+  font-size: 1.05rem;
+  line-height: 1.75;
   color: var(--text-secondary);
-  font-size: 0.97rem;
-  line-height: 1.8;
-  margin-bottom: 2rem;
 }
 
-.about-card strong { color: var(--text-primary); font-weight: 600; }
-.about-card em { color: var(--accent); font-style: normal; }
+.about-card strong {
+  color: var(--text-primary);
+  font-weight: 700;
+}
 
 .about-links {
   display: flex;
-  gap: 1rem;
+  gap: 1.5rem;
+  margin-top: 0.5rem;
 }
 
 .about-link {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.55rem 1.2rem;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  font-size: 0.85rem;
-  font-weight: 600;
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 700;
   color: var(--text-secondary);
-  transition: all var(--transition);
+  transition: var(--transition);
+}
+
+.about-link svg {
+  color: var(--accent);
+  transition: transform var(--transition);
 }
 
 .about-link:hover {
-  border-color: var(--accent);
   color: var(--accent);
+}
+
+.about-link:hover svg {
   transform: translateY(-2px);
 }
 
-/* Info grid */
+/* Info Grid (Right Column) */
+.about-right {
+  width: 100%;
+}
+
 .info-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
 }
 
 .info-card {
   display: flex;
   align-items: center;
-  gap: 0.85rem;
-  padding: 1.1rem 1.2rem;
+  gap: 1.2rem;
+  padding: 1.4rem;
   background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  transition: all var(--transition);
 }
 
-.info-card:hover {
-  border-color: rgba(110,231,183,0.25);
-  transform: translateY(-3px);
-  box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+.info-icon {
+  font-size: 1.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  background: rgba(220, 38, 38, 0.05);
+  border-radius: 12px;
+  flex-shrink: 0;
 }
 
-.info-icon { font-size: 1.4rem; }
+.info-details {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
 
 .info-label {
-  display: block;
-  font-size: 0.7rem;
+  font-size: 0.75rem;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
   color: var(--text-muted);
-  margin-bottom: 2px;
+  letter-spacing: 0.5px;
 }
 
 .info-value {
-  display: block;
-  font-size: 0.88rem;
-  font-weight: 600;
+  font-size: 0.95rem;
+  font-weight: 700;
   color: var(--text-primary);
 }
 
-/* Reveal animation */
-.reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .about-inner {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .about-right {
+    max-width: 650px;
+    margin: 0 auto;
+  }
+
+  .info-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
 }
 
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
+@media (max-width: 580px) {
+  .about-card {
+    padding: 1.5rem;
+    font-size: 0.95rem;
+  }
 
-.about-right.reveal { transition-delay: 0.15s; }
+  .about-links {
+    flex-direction: column;
+    gap: 1rem;
+  }
 
-@media (max-width: 900px) {
-  .about-inner { grid-template-columns: 1fr; gap: 3rem; }
-  .info-grid { grid-template-columns: 1fr 1fr; }
-}
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
 
-@media (max-width: 480px) {
-  .info-grid { grid-template-columns: 1fr; }
+  .info-card {
+    padding: 1.1rem;
+  }
 }

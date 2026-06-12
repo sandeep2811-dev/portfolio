@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import './Contact.css';
 
 export default function Contact() {
@@ -14,76 +15,88 @@ export default function Contact() {
     const mailtoLink = `mailto:pullareddysandeep@gmail.com?subject=Portfolio Contact from ${encodeURIComponent(name)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
     window.location.href = mailtoLink;
     setStatus('Opening your email client...');
-    setTimeout(() => setStatus(''), 3000);
+    setTimeout(() => setStatus(''), 4000);
   };
+
+  const contactDetails = [
+    {
+      icon: '📧',
+      label: 'Email Address',
+      value: 'pullareddysandeep@gmail.com',
+      href: 'mailto:pullareddysandeep@gmail.com',
+      actionLabel: 'Send email'
+    },
+    {
+      icon: '💼',
+      label: 'LinkedIn Profile',
+      value: 'sandeep-pullareddy-a71922330/',
+      href: 'https://linkedin.com/in/sandeep-pullareddy-a71922330/',
+      actionLabel: 'Connect'
+    },
+    {
+      icon: '💻',
+      label: 'GitHub Repositories',
+      value: 'sandeep2811-dev',
+      href: 'https://github.com/sandeep2811-dev',
+      actionLabel: 'Follow'
+    }
+  ];
 
   return (
     <section className="contact section" id="contact">
       <div className="container">
         <div className="contact-inner">
-          <div className="contact-left reveal">
+          {/* Left Details Column */}
+          <motion.div 
+            className="contact-left"
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6 }}
+          >
             <p className="section-label">Get In Touch</p>
             <h2 className="contact-heading">
-              Let's build something<br />
-              <span className="gradient-text">great together</span>
+              Let's Build Something<br />
+              <span className="gradient-text">Great Together</span>
             </h2>
             <p className="contact-text">
-              I'm actively looking for full-stack opportunities in Bengaluru or Hyderabad.
-              Whether you have a role, a project, or just want to connect — I'd love to hear from you.
+              I am actively seeking Full Stack Developer roles, Machine Learning Engineer roles, and internships.
+              Feel free to reach out via the form, email, or LinkedIn. I am open to remote roles or relocating.
             </p>
 
-            <div className="contact-cards">
-              {[
-                {
-                  icon: '📧',
-                  label: 'Email',
-                  value: 'pullareddysandeep@gmail.com',
-                  href: 'mailto:pullareddysandeep@gmail.com',
-                },
-                {
-                  icon: '📱',
-                  label: 'Phone',
-                  value: '+91 7207436646',
-                  href: 'tel:+917207436646',
-                },
-                {
-                  icon: '📍',
-                  label: 'Location',
-                  value: 'Ongole → Open to Bengaluru / Hyderabad',
-                  href: null,
-                },
-              ].map((c) => (
-                <div className="contact-card" key={c.label} data-hover>
-                  <span className="cc-icon">{c.icon}</span>
-                  <div>
-                    <span className="cc-label">{c.label}</span>
-                    {c.href ? (
-                      <a href={c.href} className="cc-value link">{c.value}</a>
-                    ) : (
-                      <span className="cc-value">{c.value}</span>
-                    )}
+            <div className="contact-details-grid">
+              {contactDetails.map((c, i) => (
+                <div className="contact-detail-card glass-panel" key={i} data-hover>
+                  <span className="cdc-icon">{c.icon}</span>
+                  <div className="cdc-info">
+                    <span className="cdc-label">{c.label}</span>
+                    <span className="cdc-value">{c.value}</span>
                   </div>
+                  <a 
+                    href={c.href} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="cdc-action-btn"
+                    download={c.isDownload}
+                    data-hover
+                  >
+                    {c.actionLabel}
+                  </a>
                 </div>
               ))}
             </div>
+          </motion.div>
 
-            <div className="social-row">
-              <a href="https://github.com/sandeep2811-dev" target="_blank" rel="noopener noreferrer" className="social-btn" aria-label="GitHub">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
-                </svg>
-              </a>
-              <a href="https://linkedin.com/in/sandeep-pullareddy-a71922330/" target="_blank" rel="noopener noreferrer" className="social-btn" aria-label="LinkedIn">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                </svg>
-              </a>
-            </div>
-          </div>
-
-          <div className="contact-right reveal" style={{ transitionDelay: '0.15s' }}>
-            <form className="contact-form" onSubmit={handleSubmit}>
-              <h3 className="form-title">Send a Message</h3>
+          {/* Right Message Form Column */}
+          <motion.div 
+            className="contact-right"
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6, delay: 0.15 }}
+          >
+            <form className="contact-form glass-panel" onSubmit={handleSubmit}>
+              <h3 className="form-title">Send Message</h3>
 
               <div className="form-group">
                 <label htmlFor="name">Your Name</label>
@@ -112,28 +125,33 @@ export default function Contact() {
               </div>
 
               <div className="form-group">
-                <label htmlFor="message">Message</label>
+                <label htmlFor="message">Your Message</label>
                 <textarea
                   id="message"
                   name="message"
                   rows="5"
-                  placeholder="Hi Sandeep, I'd love to discuss a full-stack role..."
+                  placeholder="Hi Sandeep, I'd love to discuss a developer / ML role..."
                   value={form.message}
                   onChange={handleChange}
                   required
                 />
               </div>
 
-              <button type="submit" className="btn-primary form-submit">
-                Send Message
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <button type="submit" className="btn-primary form-submit-btn" data-hover>
+                <span>Send Message</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                   <path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/>
                 </svg>
               </button>
 
-              {status && <p className="form-status">{status}</p>}
+              {status && (
+                <div className="form-status-msg">
+                  <span className="status-dot" />
+                  {status}
+                </div>
+              )}
             </form>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
